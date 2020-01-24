@@ -1,4 +1,4 @@
-FROM python:3.8.1-slim-buster
+FROM python:3.7.6-slim-buster
 
 ARG POETRY_VERSION=1.0.2
 ARG VENV_PATH=/opt/venv
