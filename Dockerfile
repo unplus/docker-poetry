@@ -1,6 +1,6 @@
 FROM python:3.7.6-slim-buster
 
-ARG POETRY_VERSION=1.0.3
+ARG POETRY_VERSION=1.0.5
 ARG VENV_PATH=/opt/venv
 ARG POETRY_HOME=/opt/poetry
 
