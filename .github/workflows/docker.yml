@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: define branchname
-        run: echo '${{ toJSON(github) }}' | jq -r ".ref[11:]")
+        run: echo '${{ toJSON(github) }}'
 
       # - uses: actions/checkout@master
 
