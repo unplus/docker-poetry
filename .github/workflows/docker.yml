@@ -37,10 +37,10 @@ jobs:
         with:
           context: .
           file: Dockerfile.python
-          build-args: PYTHON_VERSION=${PYTHON_VERSION}
+          build-args: PYTHON_VERSION=${{ env.PYTHON_VERSION }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: unplus/python:${PYTHON_VERSION}
+          tags: unplus/python:${{ env.PYTHON_VERSION }}
 
       # - name: Python
       #   run: |
