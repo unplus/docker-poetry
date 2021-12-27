@@ -44,7 +44,9 @@ jobs:
         with:
           context: .
           file: Dockerfile.poetry
-          build-args: PYTHON_VERSION=${{ env.PYTHON_VERSION }},POETRY_VERSION=${{ env.POETRY_VERSION }}
+          build-args: |
+            PYTHON_VERSION=${{ env.PYTHON_VERSION }}
+            POETRY_VERSION=${{ env.POETRY_VERSION }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/unplus/poetry:${{ env.POETRY_VERSION }}-py${{ env.PYTHON_VERSION }}
