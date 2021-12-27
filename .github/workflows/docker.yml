@@ -1,30 +1,35 @@
 name: Publish Docker image
 on:
   push:
-    branches:
-      - dev
+    tags:
+      - *
 jobs:
   build:
     name: build and publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: define branchname
+        run: echo ::set-env name=SHORTBRANCH::$(eco '${{ toJSON(github) }}' | jq -r ".ref[11:]")
+      - name: Test
+        run: echo $SHORTBRANCH
 
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
-        with:
-          buildx-version: latest
-          qemu-version: latest
+      # - uses: actions/checkout@master
 
-      - name: Log into GitHub Container Registry
-        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - name: Set up Docker Buildx
+      #   id: buildx
+      #   uses: crazy-max/ghaction-docker-buildx@v3
+      #   with:
+      #     buildx-version: latest
+      #     qemu-version: latest
 
-      - name: Build and Publish
-        run: |
-          docker buildx build \
-            --push \
-            --platform linux/amd64,linux/arm64/v8 \
-            --file Dockerfile.python \
-            --build-arg PYTHON_VERSION=3.9.8 \
-            -t ghcr.io/unplus/python:3.9.8 .
+      # - name: Log into GitHub Container Registry
+      #   run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # - name: Build and Publish
+      #   run: |
+      #     docker buildx build \
+      #       --push \
+      #       --platform linux/amd64,linux/arm64 \
+      #       --file Dockerfile.python \
+      #       --build-arg PYTHON_VERSION=3.9.8 \
+      #       -t ghcr.io/unplus/python:3.9.8 .
