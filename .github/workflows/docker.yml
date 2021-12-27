@@ -11,9 +11,12 @@ jobs:
       - name: Define version
         run: |
           echo "PYTHON_VERSION=$(echo '${{ toJSON(github) }}' | jq -r 'select(has("ref")) | .ref[11:] | split("-") | .[0]')" > $GITHUB_ENV
+          echo "POETRY_VERSION=$(echo '${{ toJSON(github) }}' | jq -r 'select(has("ref")) | .ref[11:] | split("-") | .[1]')" > $GITHUB_ENV
 
       - name: Confirm
-        run: echo ${PYTHON_VERSION}
+        run: |
+          echo ${PYTHON_VERSION}
+          echo ${POETRY_VERSION}
 
       # - uses: actions/checkout@master
 
