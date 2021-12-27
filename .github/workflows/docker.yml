@@ -8,8 +8,12 @@ jobs:
     name: build and publish
     runs-on: ubuntu-latest
     steps:
-      - name: define branchname
-        run: echo '${{ toJSON(github) }}'
+      - name: Define version
+        run: |
+          echo 'PYTHON_VERSION=${{ toJSON(github) | jq -r 'select(has("ref")) | .ref[11:] | split("-") | .[0]' }}' > $GITHUB_ENV
+
+      - name: Confirm
+        run: echo ${PYTHON_VERSION}
 
       # - uses: actions/checkout@master
 
