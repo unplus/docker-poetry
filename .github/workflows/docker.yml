@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: define branchname
-        run: echo ::set-env name=SHORTBRANCH::$(eco '${{ toJSON(github) }}' | jq -r ".ref[11:]")
-      - name: Test
-        run: echo $SHORTBRANCH
+        run: echo '${{ toJSON(github) }}' | jq -r ".ref[11:]")
 
       # - uses: actions/checkout@master
 
