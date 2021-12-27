@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Define version
         run: |
-          echo "PYTHON_VERSION=$(echo '${{ toJSON(github) | jq -r 'select(has("ref")) | .ref[11:] | split("-") | .[0]' }}')" > $GITHUB_ENV
+          echo "PYTHON_VERSION=$(echo '${{ toJSON(github) }}' | jq -r 'select(has("ref")) | .ref[11:] | split("-") | .[0]')" > $GITHUB_ENV
 
       - name: Confirm
         run: echo ${PYTHON_VERSION}
