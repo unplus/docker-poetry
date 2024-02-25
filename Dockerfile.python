@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION
-FROM python:${PYTHON_VERSION}-slim-bullseye
+FROM python:${PYTHON_VERSION}-slim-bookworm
 
 ENV TZ=Asia/Tokyo \
     PIP_NO_CACHE_DIR=1 \
